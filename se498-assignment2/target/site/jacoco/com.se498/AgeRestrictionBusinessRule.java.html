@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AgeRestrictionBusinessRule.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Assignment2</a> &gt; <a href="index.source.html" class="el_package">com.se498</a> &gt; <span class="el_source">AgeRestrictionBusinessRule.java</span></div><h1>AgeRestrictionBusinessRule.java</h1><pre class="source lang-java linenums">package com.se498;
+
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Arrays;
+import java.util.List;
+
+<span class="fc" id="L10">public class AgeRestrictionBusinessRule implements BusinessRule {</span>
+
+    //Implement method(s) for determining age restriction rule violation
+    
+    private static final int MIN_AGE = 18;
+<span class="fc" id="L15">    private static final List&lt;DateTimeFormatter&gt; FORMATTERS = Arrays.asList(</span>
+<span class="fc" id="L16">        DateTimeFormatter.ofPattern(&quot;MM/dd/yyyy&quot;),</span>
+<span class="fc" id="L17">        DateTimeFormatter.ofPattern(&quot;dd/MM/yyyy&quot;),</span>
+<span class="fc" id="L18">        DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd&quot;)</span>
+    );
+
+    @Override
+    public boolean apply(Object objectToCheck) {
+<span class="pc bpc" id="L23" title="1 of 2 branches missed.">        if (!(objectToCheck instanceof Participant)) {</span>
+<span class="nc" id="L24">            return false;</span>
+        }
+        
+<span class="fc" id="L27">        Participant participant = (Participant) objectToCheck;</span>
+<span class="fc" id="L28">        String dob = participant.getDateOfBirth();</span>
+
+<span class="fc" id="L30">        LocalDate birth_date = parseDate(dob);</span>
+
+<span class="pc bpc" id="L32" title="1 of 2 branches missed.">        if (birth_date == null) {</span>
+<span class="nc" id="L33">            return false;</span>
+        }
+
+<span class="fc" id="L36">        int age = calc_age(birth_date);</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        return age &gt;= MIN_AGE;</span>
+    }
+
+    private LocalDate parseDate(String date_str) {
+<span class="pc bpc" id="L41" title="1 of 2 branches missed.">        for (DateTimeFormatter formatter : FORMATTERS) {</span>
+            try {
+<span class="fc" id="L43">                return LocalDate.parse(date_str, formatter);</span>
+<span class="fc" id="L44">            } catch (DateTimeParseException e) {</span>
+                // next format
+            }
+<span class="fc" id="L47">        }</span>
+<span class="nc" id="L48">        return null;</span>
+    }
+
+    private int calc_age(LocalDate birth_date) {
+<span class="fc" id="L52">        return Period.between(birth_date, LocalDate.now()).getYears();</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -1,0 +1,11 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Assignment2,com.se498,BusinessRuleService,0,15,0,0,0,5,0,2,0,2
+Assignment2,com.se498,ConversionStrategyFactory.InstanceHolder,5,0,0,0,1,0,1,0,1,0
+Assignment2,com.se498,USConversionStrategy,15,0,0,0,4,0,2,0,2,0
+Assignment2,com.se498,ConversionStrategyException,18,0,0,0,6,0,3,0,3,0
+Assignment2,com.se498,ConversionStrategyFactory,41,0,6,0,9,0,7,0,3,0
+Assignment2,com.se498,Participant,8,15,0,0,4,6,2,3,2,3
+Assignment2,com.se498,ConversionCommand,15,0,0,0,5,0,2,0,2,0
+Assignment2,com.se498,EUConversionStrategy,15,0,0,0,4,0,2,0,2,0
+Assignment2,com.se498,AgeRestrictionBusinessRule,6,70,3,5,3,17,3,6,0,5
+Assignment2,com.se498,AgeRestrictionException,6,15,0,0,1,6,1,3,1,3
